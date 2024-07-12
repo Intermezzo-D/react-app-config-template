@@ -73,7 +73,19 @@ module.exports = {
 
   optimization: {
     splitChunks: {
-      chunks: "all"
+      chunks: "all",
+      cacheGroups: {
+        react: {
+          test: /[\\/]node_moodules[\\/]react(.*)?[\\/]$/,
+          name: "chunk-react",
+          priority: 40
+        },
+        libs: {
+          test: /[\\/]node_moodules[\\/]$/,
+          name: "chunk-libs",
+          priority: 20
+        }
+      }
     },
     runtimeChunk: {
       name: (entrypoint) => `runtime~${entrypoint.name}.js`
